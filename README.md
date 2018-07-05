@@ -1,6 +1,6 @@
 ## Brief description of the code
 
-Given a 3D image of a periodic bubble dispersion, how to count the actual number of bubbles inside and get the individual volume of each one? Here, a periodic dispersion means the organization/shape of the bubbles has periodicity in the spatial directions, and our 3D image is colorless, i.e. it is an intensity field (or local volume fraction).
+Given a 3D image of a periodic bubble dispersion, how to count the actual number of bubbles inside and get the individual volume of each one? Here, a periodic dispersion means the organization/shape of the bubbles has periodicity in the spatial directions, and the 3D image is colorless, i.e. it is an intensity field (or local volume fraction).
 
 To solve this problem, we divide the task into two parts.
 
@@ -8,4 +8,6 @@ To solve this problem, we divide the task into two parts.
 
 2. We account for periodicity by merging bubbles that are actually connected. This is the main part of the present code. Essentially, we apply the same labeling algorithm to each 2D plane, compare its opposite directions using labels obtained in the 3D field, then merge if multiple bubbles intersect the same plane. The detailed algorithm is ommitted since the implementation is specific to one type of periodic boundary conditions. It may look a bit tedious; but the methodology is general, and the solution is so-far verified to be complete.
 
-This script is coded during the 2018 CTR summer program at Stanford University. I thank Michael Dodd for mentioning the `ndimage` library. I also thank Marco Rosti for providing the data set to verify the algorithm.
+As an example, running the unmodified `volume.py`, it will read a binary file `vof0082000_3d.bin`, perform the labeling and merging, and write the final volume of each bubble in `ivol0082000.txt`. The final result contains 15 uniquely identified bubbles. The raw count would be 31.
+
+This simple script is coded during the 2018 CTR summer program at Stanford University. I thank Dr. Michael Dodd for mentioning the `ndimage` library. I also thank Dr. Marco Rosti for providing the data set to verify the algorithm.
